@@ -1,0 +1,156 @@
+[gd_scene load_steps=8 format=3 uid="uid://f2g3h4j5k6l7m"]
+
+[ext_resource type="Script" path="res://scripts/UI/TerminalView.gd" id="1_tv"]
+[ext_resource type="Texture2D" path="res://assets/icons/mic.svg" id="2_mic"]
+[ext_resource type="Texture2D" path="res://assets/icons/pause.svg" id="3_pause"]
+[ext_resource type="Texture2D" path="res://assets/icons/external-link.svg" id="4_ext"]
+[ext_resource type="Texture2D" path="res://assets/icons/x.svg" id="5_x"]
+[ext_resource type="Texture2D" path="res://assets/icons/send.svg" id="6_send"]
+[ext_resource type="Texture2D" path="res://assets/icons/chevron-left.svg" id="7_back"]
+
+[node name="TerminalView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tv")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="TopBar" type="HBoxContainer" parent="VBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="BackButton" type="Button" parent="VBox/TopBar"]
+custom_minimum_size = Vector2(76, 48)
+layout_mode = 2
+icon = ExtResource("7_back")
+text = "Back"
+
+[node name="SessionTitleLabel" type="Label" parent="VBox/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "session-1"
+
+[node name="StatusDot" type="ColorRect" parent="VBox/TopBar"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.18, 0.8, 0.44, 1)
+
+[node name="MicButton" type="Button" parent="VBox/TopBar"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+icon = ExtResource("2_mic")
+
+[node name="PauseButton" type="Button" parent="VBox/TopBar"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+icon = ExtResource("3_pause")
+
+[node name="TermuxButton" type="Button" parent="VBox/TopBar"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+icon = ExtResource("4_ext")
+
+[node name="StopButton" type="Button" parent="VBox/TopBar"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+icon = ExtResource("5_x")
+
+[node name="TerminalPanel" type="PanelContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TerminalContainer" type="VBoxContainer" parent="VBox/TerminalPanel"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TerminalText" type="RichTextLabel" parent="VBox/TerminalPanel/TerminalContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+text = "Connecting to session output..."
+scroll_following = true
+selection_enabled = true
+
+[node name="PromptLine" type="HBoxContainer" parent="VBox/TerminalPanel/TerminalContainer"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="PromptLabel" type="Label" parent="VBox/TerminalPanel/TerminalContainer/PromptLine"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18, 0.8, 0.44, 1)
+theme_override_font_sizes/font_size = 13
+text = "root# "
+
+[node name="CommandInput" type="LineEdit" parent="VBox/TerminalPanel/TerminalContainer/PromptLine"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+placeholder_text = "type command..."
+clear_button_enabled = true
+caret_blink = true
+
+[node name="SendButton" type="Button" parent="VBox/TerminalPanel/TerminalContainer/PromptLine"]
+custom_minimum_size = Vector2(44, 34)
+layout_mode = 2
+icon = ExtResource("6_send")
+
+[node name="ShortcutsBar" type="HBoxContainer" parent="VBox"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="CtrlCButton" type="Button" parent="VBox/ShortcutsBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ctrl+C"
+
+[node name="EscButton" type="Button" parent="VBox/ShortcutsBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Esc"
+
+[node name="TabButton" type="Button" parent="VBox/ShortcutsBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tab"
+
+[node name="EnterButton" type="Button" parent="VBox/ShortcutsBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Enter"
+
+[node name="CtrlZButton" type="Button" parent="VBox/ShortcutsBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ctrl+Z"
+
+[node name="UpButton" type="Button" parent="VBox/ShortcutsBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "↑"
+
+[node name="DownButton" type="Button" parent="VBox/ShortcutsBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "↓"

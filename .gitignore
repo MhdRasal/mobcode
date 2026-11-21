@@ -1,0 +1,36 @@
+# Godot specific ignores
+.godot/
+*.translation
+
+# Gradle & Android build outputs
+.gradle/
+/build/
+/apk/
+android/build/build/
+android/build/.gradle/
+android/build/.android/
+android/build/libs/
+*.aar
+local.properties
+*.apk
+*.aab
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Keystores
+debug.keystore
+
+# Temporary and log files
+*.tmp
+*.log
+.mobcode*
+
+# OS / Editor ignores
+.DS_Store
+Thumbs.db
+*.swp
+*.bak
+*~

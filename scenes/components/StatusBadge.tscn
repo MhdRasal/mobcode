@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://d8w4n5m6x1q2s"]
+
+[ext_resource type="Script" path="res://scripts/UI/StatusBadge.gd" id="1_bd"]
+[ext_resource type="Texture2D" path="res://assets/icons/terminal.svg" id="2_term"]
+
+[node name="StatusBadge" type="PanelContainer"]
+custom_minimum_size = Vector2(80, 36)
+offset_left = 20.0
+offset_top = 80.0
+offset_right = 100.0
+offset_bottom = 116.0
+script = ExtResource("1_bd")
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="HBox"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_term")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StatusDot" type="ColorRect" parent="HBox"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.133, 0.773, 0.369, 1)
+
+[node name="CountLabel" type="Label" parent="HBox"]
+layout_mode = 2
+text = "0"

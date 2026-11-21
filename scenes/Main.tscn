@@ -1,0 +1,243 @@
+[gd_scene load_steps=14 format=3 uid="uid://a9x1m2k3v4q5t"]
+
+[ext_resource type="Script" path="res://scripts/UI/Main.gd" id="1_mn"]
+[ext_resource type="PackedScene" path="res://scenes/components/Sidebar.tscn" id="2_sb"]
+[ext_resource type="PackedScene" path="res://scenes/components/TerminalView.tscn" id="3_tv"]
+[ext_resource type="PackedScene" path="res://scenes/components/NewSessionDialog.tscn" id="4_ns"]
+[ext_resource type="PackedScene" path="res://scenes/components/LogViewerDialog.tscn" id="5_lg"]
+[ext_resource type="PackedScene" path="res://scenes/components/QuickActionCard.tscn" id="6_qa"]
+[ext_resource type="Texture2D" path="res://assets/icons/menu.svg" id="7_menu"]
+[ext_resource type="Texture2D" path="res://assets/icons/file-text.svg" id="8_logs"]
+[ext_resource type="Texture2D" path="res://assets/icons/square.svg" id="9_stop"]
+[ext_resource type="Texture2D" path="res://assets/icons/copy.svg" id="10_copy"]
+[ext_resource type="Texture2D" path="res://assets/icons/external-link.svg" id="11_ext"]
+[ext_resource type="Texture2D" path="res://assets/brands/mobcode.svg" id="12_logo"]
+[ext_resource type="Texture2D" path="res://assets/icons/terminal.svg" id="13_term"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mn")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="TopBar" type="HBoxContainer" parent="VBox"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MenuButton" type="Button" parent="VBox/TopBar"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Open sessions"
+flat = true
+icon = ExtResource("7_menu")
+
+[node name="BrandIcon" type="TextureRect" parent="VBox/TopBar"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("12_logo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="VBox/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 20
+text = "MobCode"
+text_overrun_behavior = 3
+clip_text = true
+
+[node name="ConnectionPill" type="PanelContainer" parent="VBox/TopBar"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="HBox" type="HBoxContainer" parent="VBox/TopBar/ConnectionPill"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ConnectionDot" type="ColorRect" parent="VBox/TopBar/ConnectionPill/HBox"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.937, 0.267, 0.267, 1)
+
+[node name="ConnectionStatusLabel" type="Label" parent="VBox/TopBar/ConnectionPill/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Offline"
+
+[node name="Spacer" type="Control" parent="VBox/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="LogsButton" type="Button" parent="VBox/TopBar"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Debug logs"
+flat = true
+icon = ExtResource("8_logs")
+
+[node name="StopAllButton" type="Button" parent="VBox/TopBar"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Stop all sessions"
+flat = true
+icon = ExtResource("9_stop")
+
+[node name="SetupBanner" type="PanelContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="VBox/SetupBanner"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Row" type="HBoxContainer" parent="VBox/SetupBanner/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="VBox/SetupBanner/VBox/Row"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("13_term")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBox/SetupBanner/VBox/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 12
+text = "Termux engine is offline"
+
+[node name="Actions" type="HBoxContainer" parent="VBox/SetupBanner/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CopySetupButton" type="Button" parent="VBox/SetupBanner/VBox/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+icon = ExtResource("10_copy")
+text = "Copy setup"
+
+[node name="OpenTermuxButton" type="Button" parent="VBox/SetupBanner/VBox/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+icon = ExtResource("11_ext")
+text = "Open Termux"
+
+[node name="Content" type="VBoxContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 14
+
+[node name="QuickBar" type="GridContainer" parent="VBox/Content"]
+layout_mode = 2
+columns = 2
+
+[node name="AgyButton" parent="VBox/Content/QuickBar" instance=ExtResource("6_qa")]
+layout_mode = 2
+size_flags_horizontal = 3
+agent_type = "agy"
+
+[node name="OpenCodeButton" parent="VBox/Content/QuickBar" instance=ExtResource("6_qa")]
+layout_mode = 2
+size_flags_horizontal = 3
+agent_type = "opencode"
+
+[node name="ClaudeButton" parent="VBox/Content/QuickBar" instance=ExtResource("6_qa")]
+layout_mode = 2
+size_flags_horizontal = 3
+agent_type = "claude"
+
+[node name="ShellButton" parent="VBox/Content/QuickBar" instance=ExtResource("6_qa")]
+layout_mode = 2
+size_flags_horizontal = 3
+agent_type = "shell"
+
+[node name="SessionsPanel" type="PanelContainer" parent="VBox/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBox" type="VBoxContainer" parent="VBox/Content/SessionsPanel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HeaderRow" type="HBoxContainer" parent="VBox/Content/SessionsPanel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderIcon" type="TextureRect" parent="VBox/Content/SessionsPanel/VBox/HeaderRow"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("13_term")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Header" type="Label" parent="VBox/Content/SessionsPanel/VBox/HeaderRow"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Active sessions"
+
+[node name="Spacer" type="Control" parent="VBox/Content/SessionsPanel/VBox/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CountLabel" type="Label" parent="VBox/Content/SessionsPanel/VBox/HeaderRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.631, 0.631, 0.67, 1)
+theme_override_font_sizes/font_size = 11
+text = "0"
+
+[node name="EmptyLabel" type="Label" parent="VBox/Content/SessionsPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.631, 0.631, 0.67, 1)
+theme_override_font_sizes/font_size = 13
+text = "No active sessions.
+Launch an agent above to get started."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Scroll" type="ScrollContainer" parent="VBox/Content/SessionsPanel/VBox"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="SessionsContainer" type="VBoxContainer" parent="VBox/Content/SessionsPanel/VBox/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="TerminalView" parent="." instance=ExtResource("3_tv")]
+visible = false
+layout_mode = 1
+
+[node name="NewSessionDialog" parent="." instance=ExtResource("4_ns")]
+visible = false
+
+[node name="LogViewerDialog" parent="." instance=ExtResource("5_lg")]
+visible = false
+
+[node name="Sidebar" parent="." instance=ExtResource("2_sb")]
+layout_mode = 1

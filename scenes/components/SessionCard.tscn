@@ -1,0 +1,100 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6v2n5l1x8p9q"]
+
+[ext_resource type="Script" path="res://scripts/UI/SessionCard.gd" id="1_sc"]
+[ext_resource type="Texture2D" path="res://assets/icons/x.svg" id="3_x"]
+[ext_resource type="Texture2D" path="res://assets/icons/external-link.svg" id="4_ext"]
+
+[node name="SessionCard" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 56)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 56.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+tooltip_text = "Open session"
+script = ExtResource("1_sc")
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="IconPanel" type="PanelContainer" parent="HBox"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+mouse_filter = 2
+size_flags_vertical = 4
+
+[node name="Icon" type="TextureRect" parent="HBox/IconPanel"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBox" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+mouse_filter = 2
+size_flags_horizontal = 3
+alignment = 1
+theme_override_constants/separation = 1
+
+[node name="NameLabel" type="Label" parent="HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+text = "session-1"
+text_overrun_behavior = 3
+clip_text = true
+
+[node name="TypeLabel" type="Label" parent="HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/font_size = 9
+text = "TYPE"
+text_overrun_behavior = 3
+clip_text = true
+
+[node name="StatusPill" type="PanelContainer" parent="HBox"]
+layout_mode = 2
+mouse_filter = 2
+size_flags_vertical = 4
+
+[node name="HBox" type="HBoxContainer" parent="HBox/StatusPill"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="StatusDot" type="ColorRect" parent="HBox/StatusPill/HBox"]
+custom_minimum_size = Vector2(6, 6)
+layout_mode = 2
+mouse_filter = 2
+size_flags_vertical = 4
+color = Color(0.133, 0.773, 0.369, 1)
+
+[node name="StatusLabel" type="Label" parent="HBox/StatusPill/HBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/font_size = 9
+text = "Running"
+text_overrun_behavior = 3
+clip_text = true
+
+[node name="FloatButton" type="Button" parent="HBox"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Toggle floating overlay"
+flat = true
+icon = ExtResource("4_ext")
+
+[node name="CloseButton" type="Button" parent="HBox"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Stop session"
+flat = true
+icon = ExtResource("3_x")
